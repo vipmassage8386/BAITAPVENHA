@@ -1,0 +1,281 @@
+using System;
+using System.Windows.Forms;
+
+namespace Lab03
+{
+    internal static class Program
+    {
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // Chạy form chính
+            Application.Run(new FrmStudentManager());
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace Lab03
+{
+    public partial class FrmStudentManager : Form
+    {
+        private List<Student> students = new List<Student>();
+
+        public FrmStudentManager()
+        {
+            InitializeComponent();
+        }
+
+        private void FrmStudentManager_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void mnAddNew_Click(object sender, EventArgs e)
+        {
+            OpenAddStudentForm();
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            OpenAddStudentForm();
+        }
+
+        private void OpenAddStudentForm()
+        {
+            FrmAddStudent frm = new FrmAddStudent();
+            frm.OnAddStudent = AddStudent;
+            frm.ShowDialog(this); // modal form
+        }
+
+        private void AddStudent(string studentID, string fullName, string averageScore, string faculty)
+        {
+            // Kiểm tra trùng mã
+            foreach (var sv in students)
+            {
+                if (sv.StudentID == studentID)
+                {
+                    MessageBox.Show("Mã sinh viên đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            // Thêm mới
+            students.Add(new Student()
+            {
+                StudentID = studentID,
+                FullName = fullName,
+                Faculty = faculty,
+                AverageScore = double.Parse(averageScore)
+            });
+
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            dgvStudents.DataSource = null;
+            dgvStudents.DataSource = students;
+        }
+
+        private void mnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtSearch.Text.ToLower();
+            var result = students.FindAll(s => s.FullName.ToLower().Contains(keyword));
+
+            dgvStudents.DataSource = null;
+            dgvStudents.DataSource = result;
+        }
+    }
+
+    // Class model
+    public class Student
+    {
+        public string StudentID { get; set; }
+        public string FullName { get; set; }
+        public string Faculty { get; set; }
+        public double AverageScore { get; set; }
+    }
+}
+
+
+namespace Lab03
+{
+    partial class FrmStudentManager
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null)) components.Dispose();
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mnFunction = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnAddNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAddNew = new System.Windows.Forms.ToolStripButton();
+            this.lblSearch = new System.Windows.Forms.ToolStripLabel();
+            this.txtSearch = new System.Windows.Forms.ToolStripTextBox();
+            this.dgvStudents = new System.Windows.Forms.DataGridView();
+
+            this.menuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
+            this.SuspendLayout();
+
+            // menuStrip1
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnFunction});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+
+            this.mnFunction.Text = "Chức năng";
+            this.mnFunction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnAddNew, this.mnExit});
+
+            this.mnAddNew.Text = "Thêm mới";
+            this.mnAddNew.Click += new System.EventHandler(this.mnAddNew_Click);
+
+            this.mnExit.Text = "Thoát";
+            this.mnExit.Click += new System.EventHandler(this.mnExit_Click);
+
+            // toolStrip1
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnAddNew, this.lblSearch, this.txtSearch});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+
+            this.btnAddNew.Text = "Thêm mới";
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
+
+            this.lblSearch.Text = "Tìm Kiếm Theo Tên";
+
+            this.txtSearch.Size = new System.Drawing.Size(200, 25);
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+
+            // dgvStudents
+            this.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvStudents.Location = new System.Drawing.Point(0, 49);
+            this.dgvStudents.Size = new System.Drawing.Size(600, 400);
+
+            // FrmStudentManager
+            this.ClientSize = new System.Drawing.Size(600, 450);
+            this.Controls.Add(this.dgvStudents);
+            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Text = "Quản lý Sinh Viên";
+            this.Load += new System.EventHandler(this.FrmStudentManager_Load);
+
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
+
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnFunction, mnAddNew, mnExit;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnAddNew;
+        private System.Windows.Forms.ToolStripLabel lblSearch;
+        private System.Windows.Forms.ToolStripTextBox txtSearch;
+        private System.Windows.Forms.DataGridView dgvStudents;
+    }
+}
+
+
+namespace Lab03
+{
+    partial class FrmAddStudent
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null)) components.Dispose();
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
+            this.lblStudentID = new System.Windows.Forms.Label();
+            this.lblFullName = new System.Windows.Forms.Label();
+            this.lblFaculty = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
+            this.txtStudentID = new System.Windows.Forms.TextBox();
+            this.txtFullName = new System.Windows.Forms.TextBox();
+            this.cboFaculty = new System.Windows.Forms.ComboBox();
+            this.txtScore = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+
+            // Labels
+            this.lblStudentID.Text = "Mã số Sinh viên";
+            this.lblStudentID.Location = new System.Drawing.Point(20, 20);
+
+            this.lblFullName.Text = "Tên Sinh viên";
+            this.lblFullName.Location = new System.Drawing.Point(20, 60);
+
+            this.lblFaculty.Text = "Khoa";
+            this.lblFaculty.Location = new System.Drawing.Point(20, 100);
+
+            this.lblScore.Text = "Điểm TB";
+            this.lblScore.Location = new System.Drawing.Point(20, 140);
+
+            // Inputs
+            this.txtStudentID.Location = new System.Drawing.Point(140, 20);
+            this.txtFullName.Location = new System.Drawing.Point(140, 60);
+            this.cboFaculty.Location = new System.Drawing.Point(140, 100);
+            this.cboFaculty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtScore.Location = new System.Drawing.Point(140, 140);
+
+            // Buttons
+            this.btnAdd.Text = "Thêm mới";
+            this.btnAdd.Location = new System.Drawing.Point(80, 200);
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+
+            this.btnExit.Text = "Thoát";
+            this.btnExit.Location = new System.Drawing.Point(200, 200);
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+
+            // Form
+            this.ClientSize = new System.Drawing.Size(400, 250);
+            this.Controls.AddRange(new System.Windows.Forms.Control[] {
+                this.lblStudentID, this.txtStudentID,
+                this.lblFullName, this.txtFullName,
+                this.lblFaculty, this.cboFaculty,
+                this.lblScore, this.txtScore,
+                this.btnAdd, this.btnExit
+            });
+            this.Text = "Thêm Sinh Viên";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
+
+        private System.Windows.Forms.Label lblStudentID, lblFullName, lblFaculty, lblScore;
+        private System.Windows.Forms.TextBox txtStudentID, txtFullName, txtScore;
+        private System.Windows.Forms.ComboBox cboFaculty;
+        private System.Windows.Forms.Button btnAdd, btnExit;
+    }
+}
+
