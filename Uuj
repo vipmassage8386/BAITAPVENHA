@@ -1,0 +1,219 @@
+using System;
+using System.Windows.Forms;
+
+namespace TESTKKK1   // ⚡ phải đồng bộ với namespace project
+{
+    partial class Form1
+    {
+        private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuHeThong;
+        private System.Windows.Forms.ToolStripMenuItem menuNew;
+        private System.Windows.Forms.ToolStripMenuItem menuOpen;
+        private System.Windows.Forms.ToolStripMenuItem menuSave;
+        private System.Windows.Forms.ToolStripMenuItem menuExit;
+        private System.Windows.Forms.ToolStripMenuItem menuDinhDang;
+
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnNew;
+        private System.Windows.Forms.ToolStripButton btnOpen;
+        private System.Windows.Forms.ToolStripButton btnSave;
+        private System.Windows.Forms.ToolStripButton btnBold;
+        private System.Windows.Forms.ToolStripButton btnItalic;
+        private System.Windows.Forms.ToolStripButton btnUnderline;
+
+        private System.Windows.Forms.ToolStripComboBox cmbFonts;
+        private System.Windows.Forms.ToolStripComboBox cmbSize;
+
+        private System.Windows.Forms.RichTextBox richText;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblStatus;
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Khởi tạo giao diện
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuHeThong = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDinhDang = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnNew = new System.Windows.Forms.ToolStripButton();
+            this.btnOpen = new System.Windows.Forms.ToolStripButton();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.btnBold = new System.Windows.Forms.ToolStripButton();
+            this.btnItalic = new System.Windows.Forms.ToolStripButton();
+            this.btnUnderline = new System.Windows.Forms.ToolStripButton();
+            this.cmbFonts = new System.Windows.Forms.ToolStripComboBox();
+this.cmbSize = new System.Windows.Forms.ToolStripComboBox();
+
+            this.richText = new System.Windows.Forms.RichTextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+
+            this.menuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.SuspendLayout();
+
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new ToolStripItem[] {
+                this.menuHeThong,
+                this.menuDinhDang
+            });
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+
+            // 
+            // menuHeThong
+            // 
+            this.menuHeThong.DropDownItems.AddRange(new ToolStripItem[] {
+                this.menuNew,
+                this.menuOpen,
+                this.menuSave,
+                this.menuExit
+            });
+            this.menuHeThong.Name = "menuHeThong";
+            this.menuHeThong.Size = new System.Drawing.Size(74, 20);
+            this.menuHeThong.Text = "Hệ Thống";
+
+            // menu items
+            this.menuNew.Text = "Mới";
+            this.menuNew.Click += new EventHandler(this.menuNew_Click);
+
+            this.menuOpen.Text = "Mở";
+            this.menuOpen.Click += new EventHandler(this.menuOpen_Click);
+
+            this.menuSave.Text = "Lưu";
+            this.menuSave.Click += new EventHandler(this.menuSave_Click);
+
+            this.menuExit.Text = "Thoát";
+            this.menuExit.Click += new EventHandler(this.menuExit_Click);
+
+            this.menuDinhDang.Text = "Định dạng";
+            this.menuDinhDang.Click += new EventHandler(this.menuFormat_Click);
+
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new ToolStripItem[] {
+                this.btnNew,
+                this.btnOpen,
+                this.btnSave,
+                new ToolStripSeparator(),
+                this.btnBold,
+                this.btnItalic,
+                this.btnUnderline,
+                new ToolStripSeparator(),
+                this.cmbFonts,
+                this.cmbSize
+            });
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+
+            // btnNew
+            this.btnNew.Text = "New";
+            this.btnNew.Click += new EventHandler(this.menuNew_Click);
+
+            // btnOpen
+            this.btnOpen.Text = "Open";
+this.btnOpen.Click += new EventHandler(this.menuOpen_Click);
+
+            // btnSave
+            this.btnSave.Text = "Save";
+            this.btnSave.Click += new EventHandler(this.menuSave_Click);
+
+            // btnBold
+            this.btnBold.Text = "B";
+            this.btnBold.Click += new EventHandler(this.btnBold_Click);
+
+            // btnItalic
+            this.btnItalic.Text = "I";
+            this.btnItalic.Click += new EventHandler(this.btnItalic_Click);
+
+            // btnUnderline
+            this.btnUnderline.Text = "U";
+            this.btnUnderline.Click += new EventHandler(this.btnUnderline_Click);
+
+            // combo fonts
+            this.cmbFonts.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbFonts.Name = "cmbFonts";
+            this.cmbFonts.Size = new System.Drawing.Size(150, 25);
+            this.cmbFonts.SelectedIndexChanged += new EventHandler(this.cmbFonts_SelectedIndexChanged);
+
+            // combo size
+            this.cmbSize.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbSize.Name = "cmbSize";
+            this.cmbSize.Size = new System.Drawing.Size(75, 25);
+            this.cmbSize.SelectedIndexChanged += new EventHandler(this.cmbSize_SelectedIndexChanged);
+
+            // 
+            // richText
+            // 
+            this.richText.Dock = DockStyle.Fill;
+            this.richText.Location = new System.Drawing.Point(0, 49);
+            this.richText.Name = "richText";
+            this.richText.Size = new System.Drawing.Size(800, 379);
+            this.richText.TabIndex = 2;
+            this.richText.Text = "";
+            this.richText.TextChanged += new EventHandler(this.richText_TextChanged);
+
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new ToolStripItem[] {
+                this.lblStatus
+            });
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 3;
+
+            this.lblStatus.Text = "Tổng số từ: 0";
+
+            // 
+            // Form1
+            // 
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.richText);
+            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.statusStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "Form1";
+            this.Text = "Soạn thảo văn bản - Lab03-02";
+
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
