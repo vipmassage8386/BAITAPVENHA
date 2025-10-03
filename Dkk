@@ -1,0 +1,148 @@
+using System;
+using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
+using System.Windows.Forms;
+
+namespace TESTKKK1   // ⚡ đồng bộ namespace với project
+{
+    public partial class Form1 : Form
+    {
+        private string currentFile = string.Empty;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Load fonts
+            foreach (FontFamily font in new InstalledFontCollection().Families)
+            {
+                cmbFonts.Items.Add(font.Name);
+            }
+
+            // Load size
+            int[] sizes = { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
+            foreach (int s in sizes) cmbSize.Items.Add(s);
+
+            // Default font
+            cmbFonts.Text = "Tahoma";
+            cmbSize.Text = "14";
+            richText.Font = new Font("Tahoma", 14);
+        }
+
+        private void menuNew_Click(object sender, EventArgs e)
+        {
+            richText.Clear();
+            currentFile = string.Empty;
+            cmbFonts.Text = "Tahoma";
+            cmbSize.Text = "14";
+            richText.Font = new Font("Tahoma", 14);
+        }
+
+        private void menuOpen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Rich Text (*.rtf)|*.rtf|Text File (*.txt)|*.txt";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                currentFile = ofd.FileName;
+                if (Path.GetExtension(currentFile).ToLower() == ".rtf")
+                    richText.LoadFile(currentFile, RichTextBoxStreamType.RichText);
+                else
+                    richText.LoadFile(currentFile, RichTextBoxStreamType.PlainText);
+            }
+        }
+
+        private void menuSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(currentFile))
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Rich Text (*.rtf)|*.rtf";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    currentFile = sfd.FileName;
+                    richText.SaveFile(currentFile, RichTextBoxStreamType.RichText);
+                }
+            }
+            else
+            {
+                richText.SaveFile(currentFile, RichTextBoxStreamType.RichText);
+                MessageBox.Show("Lưu thành công!");
+            }
+        }
+
+        private void menuExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void menuFormat_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDlg = new FontDialog
+            {
+                ShowColor = true,
+                ShowApply = true,
+                ShowEffects = true,
+                ShowHelp = true
+            };
+
+            if (fontDlg.ShowDialog() != richText.ForeColor = fontDlg.Color;
+                richText.Font = fontDlg.Font;
+            }
+        }
+
+        private void btnBold_Click(object sender, EventArgs e)
+        {
+            if (richText.SelectionFont != null)
+            {
+                FontStyle style = richText.SelectionFont.Style ^ FontStyle.Bold;
+                richText.SelectionFont = new Font(richText.SelectionFont, style);
+            }
+        }
+
+        private void btnItalic_Click(object sender, EventArgs e)
+        {
+            if (richText.SelectionFont != null)
+            {
+                FontStyle style = richText.SelectionFont.Style ^ FontStyle.Italic;
+                richText.SelectionFont = new Font(richText.SelectionFont, style);
+            }
+        }
+
+        private void btnUnderline_Click(object sender, EventArgs e)
+        {
+            if (richText.SelectionFont != null)
+            {
+                FontStyle style = richText.SelectionFont.Style ^ FontStyle.Underline;
+                richText.SelectionFont = new Font(richText.SelectionFont, style);
+            }
+        }
+
+        private void cmbFonts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbFonts.SelectedItem != null && int.TryParse(cmbSize.Text, out int size))
+            {
+                richText.SelectionFont = new Font(cmbFonts.SelectedItem.ToString(), size);
+            }
+        }
+
+        private void cmbSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(cmbSize.Text, out int size) && !string.IsNullOrEmpty(cmbFonts.Text))
+            {
+                richText.SelectionFont = new Font(cmbFonts.Text, size);
+            }
+        }
+
+        private void richText_TextChanged(object sender, EventArgs e)
+        {
+            string[] words = richText.Text.Split(new char[] { ' ', '\n', '\r' },
+                                StringSplitOptions.RemoveEmptyEntries);
+            lblStatus.Text = "Tổng số từ: " + words.Length;
+        }
+    }
+}
