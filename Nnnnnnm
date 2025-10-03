@@ -1,0 +1,300 @@
+namespace Lab03
+{
+    partial class FrmStudentManager
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null)) components.Dispose();
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mnFunction = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnAddNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAddNew = new System.Windows.Forms.ToolStripButton();
+            this.txtSearch = new System.Windows.Forms.ToolStripTextBox();
+            this.lblSearch = new System.Windows.Forms.ToolStripLabel();
+            this.dgvStudents = new System.Windows.Forms.DataGridView();
+            this.menuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
+            this.SuspendLayout();
+
+            // menuStrip
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                this.mnFunction});
+            this.mnFunction.Text = "Chức năng";
+            this.mnFunction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                this.mnAddNew, this.mnExit});
+            this.mnAddNew.Text = "Thêm mới";
+            this.mnExit.Text = "Thoát";
+
+            // toolStrip
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                this.btnAddNew, this.lblSearch, this.txtSearch});
+            this.btnAddNew.Text = "Thêm mới";
+            this.lblSearch.Text = "Tìm Kiếm Theo Tên";
+
+            // dataGridView
+            this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill;
+
+            // form
+            this.Controls.Add(this.dgvStudents);
+            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Text = "Quản lý Sinh Viên";
+
+            this.menuStrip1.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
+
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnFunction, mnAddNew, mnExit;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnAddNew;
+        private System.Windows.Forms.ToolStripTextBox txtSearch;
+        private System.Windows.Forms.ToolStripLabel lblSearch;
+        private System.Windows.Forms.DataGridView dgvStudents;
+    }
+}
+
+namespace Lab03
+{
+    partial class FrmAddStudent
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null)) components.Dispose();
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
+            this.lblStudentID = new System.Windows.Forms.Label();
+            this.lblFullName = new System.Windows.Forms.Label();
+            this.lblFaculty = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
+            this.txtStudentID = new System.Windows.Forms.TextBox();
+            this.txtFullName = new System.Windows.Forms.TextBox();
+            this.cboFaculty = new System.Windows.Forms.ComboBox();
+            this.txtScore = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+
+            // Labels
+            this.lblStudentID.Text = "Mã số Sinh viên";
+            this.lblStudentID.Location = new System.Drawing.Point(20, 20);
+
+            this.lblFullName.Text = "Tên Sinh viên";
+            this.lblFullName.Location = new System.Drawing.Point(20, 60);
+
+            this.lblFaculty.Text = "Khoa";
+            this.lblFaculty.Location = new System.Drawing.Point(20, 100);
+
+            this.lblScore.Text = "Điểm TB";
+            this.lblScore.Location = new System.Drawing.Point(20, 140);
+
+            // TextBoxes
+            this.txtStudentID.Location = new System.Drawing.Point(140, 20);
+            this.txtFullName.Location = new System.Drawing.Point(140, 60);
+            this.cboFaculty.Location = new System.Drawing.Point(140, 100);
+            this.cboFaculty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtScore.Location = new System.Drawing.Point(140, 140);
+
+            // Buttons
+            this.btnAdd.Text = "Thêm mới";
+            this.btnAdd.Location = new System.Drawing.Point(80, 200);
+
+            this.btnExit.Text = "Thoát";
+            this.btnExit.Location = new System.Drawing.Point(200, 200);
+
+            // Form
+            this.ClientSize = new System.Drawing.Size(400, 250);
+            this.Controls.AddRange(new System.Windows.Forms.Control[] {
+                this.lblStudentID, this.txtStudentID,
+                this.lblFullName, this.txtFullName,
+                this.lblFaculty, this.cboFaculty,
+                this.lblScore, this.txtScore,
+                this.btnAdd, this.btnExit
+            });
+            this.Text = "Thêm Sinh Viên";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
+
+        private System.Windows.Forms.Label lblStudentID, lblFullName, lblFaculty, lblScore;
+        private System.Windows.Forms.TextBox txtStudentID, txtFullName, txtScore;
+        private System.Windows.Forms.ComboBox cboFaculty;
+        private System.Windows.Forms.Button btnAdd, btnExit;
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace Lab03
+{
+    public partial class FrmStudentManager : Form
+    {
+        // Danh sách sinh viên (List lưu dữ liệu tạm)
+        private List<Student> students = new List<Student>();
+
+        public FrmStudentManager()
+        {
+            InitializeComponent();
+        }
+
+        // Khi click "Thêm mới" trên MenuStrip hoặc ToolStrip
+        private void mnAddNew_Click(object sender, EventArgs e)
+        {
+            OpenAddStudentForm();
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            OpenAddStudentForm();
+        }
+
+        private void OpenAddStudentForm()
+        {
+            FrmAddStudent frm = new FrmAddStudent();
+            // Gán delegate cho form thêm sinh viên
+            frm.OnAddStudent = new FrmAddStudent.AddStudentDelegate(AddStudent);
+            frm.ShowDialog();
+        }
+
+        // Delegate nhận dữ liệu từ Form Thêm Sinh Viên
+        private void AddStudent(string studentID, string fullName, string averageScore, string faculty)
+        {
+            // Kiểm tra trùng mã
+            foreach (var sv in students)
+            {
+                if (sv.StudentID == studentID)
+                {
+                    MessageBox.Show("Mã sinh viên đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            // Thêm sinh viên mới
+            students.Add(new Student()
+            {
+                StudentID = studentID,
+                FullName = fullName,
+                Faculty = faculty,
+                AverageScore = double.Parse(averageScore)
+            });
+
+            LoadData();
+        }
+
+        // Hàm load dữ liệu ra DataGridView
+        private void LoadData()
+        {
+            dgvStudents.DataSource = null;
+            dgvStudents.DataSource = students;
+        }
+
+        // Khi click "Thoát"
+        private void mnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // Tìm kiếm theo tên
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtSearch.Text.ToLower();
+            var result = students.FindAll(s => s.FullName.ToLower().Contains(keyword));
+
+            dgvStudents.DataSource = null;
+            dgvStudents.DataSource = result;
+        }
+    }
+
+    // Lớp sinh viên
+    public class Student
+    {
+        public string StudentID { get; set; }
+        public string FullName { get; set; }
+        public string Faculty { get; set; }
+        public double AverageScore { get; set; }
+    }
+}
+
+
+
+
+
+using System;
+using System.Windows.Forms;
+
+namespace Lab03
+{
+    public partial class FrmAddStudent : Form
+    {
+        // Delegate dùng để truyền dữ liệu về Form Quản lý
+        public delegate void AddStudentDelegate(string studentID, string fullName, string averageScore, string faculty);
+        public AddStudentDelegate OnAddStudent;
+
+        public FrmAddStudent()
+        {
+            InitializeComponent();
+
+            // Thêm dữ liệu Khoa vào ComboBox
+            cboFaculty.Items.Add("Công nghệ thông tin");
+            cboFaculty.Items.Add("Ngôn ngữ Anh");
+            cboFaculty.Items.Add("Quản trị kinh doanh");
+        }
+
+        // Khi bấm nút Thêm mới
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra dữ liệu
+            if (string.IsNullOrWhiteSpace(txtStudentID.Text) ||
+                string.IsNullOrWhiteSpace(txtFullName.Text) ||
+                string.IsNullOrWhiteSpace(txtScore.Text) ||
+                cboFaculty.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            double score;
+            if (!double.TryParse(txtScore.Text, out score) || score < 0 || score > 10)
+            {
+                MessageBox.Show("Điểm TB phải từ 0 đến 10!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Gọi delegate truyền dữ liệu về form chính
+            OnAddStudent?.Invoke(txtStudentID.Text, txtFullName.Text, txtScore.Text, cboFaculty.SelectedItem.ToString());
+
+            // Đóng form
+            this.Close();
+        }
+
+        // Khi bấm nút Thoát
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}
